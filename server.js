@@ -48,6 +48,10 @@ app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/login.html'));
 });
 
+app.get('/error', (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/error.html'));
+});
+
 app.get('/oil', (req, res) => {
   res.sendFile(path.join(__dirname, 'views/oil.html'));
 });

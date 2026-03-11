@@ -23,55 +23,360 @@
             </div>
             <div class="flex gap-3 sm:gap-6 text-xs sm:text-sm font-medium text-slate-600">
                 <a href="/oil" class="text-emerald-600">Prices</a>
-                <a href="/login" class="hover:text-emerald-600">Login</a>
+                <a href="#" class="hover:text-emerald-600">News</a>
+                <a href="#" class="hover:text-emerald-600">About</a>
             </div>
         </div>
     </nav>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-        <div class="mb-8 sm:mb-12">
-            <h1 class="text-2xl sm:text-3xl font-bold mb-2">Daily Oil Prices</h1>
-            <p class="text-slate-500 text-sm sm:text-base">Official fuel prices in Thailand. Updated: <span id="update-date"></span></p>
+        <div class="text-center mb-10">
+            <h1 class="text-3xl sm:text-4xl font-black text-slate-900 mb-2">ราคาน้ำมันวันนี้</h1>
+            <h2 class="text-slate-500 font-medium">อัปเดตล่าสุด <span id="update-date"></span></h2>
         </div>
 
-        <div class="bg-white rounded-xl sm:rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <!-- Comparison Table Section -->
+        <div class="mb-12 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+                <h2 class="font-bold text-slate-700 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    ตารางเปรียบเทียบราคาน้ำมัน
+                </h2>
+                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">หน่วย: บาท/ลิตร</span>
+            </div>
             <div class="overflow-x-auto">
-                <table class="w-full text-left text-sm sm:text-base">
+                <table class="w-full text-center border-collapse min-w-[800px]">
                     <thead>
-                        <tr class="bg-slate-50 text-slate-400 text-[10px] sm:text-xs uppercase font-bold tracking-wider">
-                            <th class="px-4 sm:px-6 py-3 sm:py-4">Brand</th>
-                            <th class="px-4 sm:px-6 py-3 sm:py-4">Type</th>
-                            <th class="px-4 sm:px-6 py-3 sm:py-4">Price</th>
-                            <th class="px-4 sm:px-6 py-3 sm:py-4 hidden sm:table-cell">Status</th>
+                        <tr class="bg-slate-50 text-slate-600 text-xs font-bold border-b border-slate-100">
+                            <th class="px-4 py-6 bg-white sticky left-0 z-10 border-r border-slate-100 min-w-[140px]">ประเภทน้ำมัน</th>
+                            <th class="px-2 py-4 min-w-[80px]">
+                                <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมันปตท.png" class="w-8 h-8 mx-auto mb-2" alt="ปตท.">
+                                <span class="block">ปตท.</span>
+                            </th>
+                            <th class="px-2 py-4 min-w-[80px]">
+                                <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมันบางจาก.png" class="w-8 h-8 mx-auto mb-2" alt="บางจาก">
+                                <span class="block">บางจาก</span>
+                            </th>
+                            <th class="px-2 py-4 min-w-[80px]">
+                                <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-shell.png" class="w-8 h-8 mx-auto mb-2" alt="เชลล์">
+                                <span class="block">เชลล์</span>
+                            </th>
+                            <th class="px-2 py-4 min-w-[80px]">
+                                <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-caltex.png" class="w-8 h-8 mx-auto mb-2" alt="คาลเท็กซ์">
+                                <span class="block">คาลเท็กซ์</span>
+                            </th>
+                            <th class="px-2 py-4 min-w-[80px]">
+                                <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-irpc.png" class="w-8 h-8 mx-auto mb-2" alt="ไออาร์พีซี">
+                                <span class="block">IRPC</span>
+                            </th>
+                            <th class="px-2 py-4 min-w-[80px]">
+                                <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-pt.png" class="w-8 h-8 mx-auto mb-2" alt="พีที">
+                                <span class="block">พีที</span>
+                            </th>
+                            <th class="px-2 py-4 min-w-[80px]">
+                                <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-susco.png" class="w-8 h-8 mx-auto mb-2" alt="ซัสโก้">
+                                <span class="block">ซัสโก้</span>
+                            </th>
+                            <th class="px-2 py-4 min-w-[80px]">
+                                <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-pure.png" class="w-8 h-8 mx-auto mb-2" alt="เพียว">
+                                <span class="block">เพียว</span>
+                            </th>
                         </tr>
                     </thead>
-                    <tbody id="price-table" class="divide-y divide-slate-100">
-                        <!-- Data will be loaded here -->
+                    <tbody id="comparison-body" class="divide-y divide-slate-50 text-sm">
+                        <!-- Data will be injected here -->
                     </tbody>
                 </table>
             </div>
         </div>
+
+        <!-- Fuel Calculator Section -->
+        <div class="mb-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+                <h2 class="text-xl font-bold mb-6 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                    คำนวณค่าใช้จ่ายน้ำมัน
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2">ระยะทาง (กม.)</label>
+                        <input type="number" placeholder="เช่น 100" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase mb-2">อัตราสิ้นเปลือง (กม./ลิตร)</label>
+                        <input type="number" placeholder="เช่น 15" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none transition-all">
+                    </div>
+                    <button class="w-full bg-emerald-600 text-white font-bold py-4 rounded-xl hover:bg-emerald-700 transition-colors">คำนวณ</button>
+                </div>
+            </div>
+            <div class="bg-slate-900 rounded-2xl p-8 text-white flex flex-col justify-center relative overflow-hidden">
+                <div class="relative z-10">
+                    <h2 class="text-xl font-bold mb-4">ค้นหาปั๊มน้ำมันใกล้คุณ</h2>
+                    <p class="text-slate-400 text-sm mb-6 leading-relaxed">ค้นหาตำแหน่งปั๊มน้ำมันทุกแบรนด์ทั่วประเทศไทย พร้อมเช็คบริการเสริม เช่น ร้านกาแฟ, จุดชาร์จ EV และห้องน้ำ</p>
+                    <button class="bg-white text-slate-900 font-bold px-6 py-3 rounded-xl hover:bg-slate-100 transition-colors">เปิดแผนที่</button>
+                </div>
+                <svg xmlns="http://www.w3.org/2000/svg" class="absolute -right-10 -bottom-10 h-64 w-64 text-white/5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+            </div>
+        </div>
+
+        <!-- Top Navigation with Brand Icons -->
+        <div class="mb-12">
+            <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
+                <a href="#PTT" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center group-hover:border-emerald-500 transition-all p-2">
+                        <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมันปตท.png" class="w-full h-full rounded-lg" alt="PTT">
+                    </div>
+                    <span class="text-[10px] sm:text-xs font-bold mt-2 text-slate-600 group-hover:text-emerald-600">ปตท.</span>
+                </a>
+                <a href="#Bangchak" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center group-hover:border-emerald-500 transition-all p-2">
+                        <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมันบางจาก.png" class="w-full h-full rounded-lg" alt="Bangchak">
+                    </div>
+                    <span class="text-[10px] sm:text-xs font-bold mt-2 text-slate-600 group-hover:text-emerald-600">บางจาก</span>
+                </a>
+                <a href="#Shell" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center group-hover:border-emerald-500 transition-all p-2">
+                        <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-shell.png" class="w-full h-full rounded-lg" alt="Shell">
+                    </div>
+                    <span class="text-[10px] sm:text-xs font-bold mt-2 text-slate-600 group-hover:text-emerald-600">เชลล์</span>
+                </a>
+                <a href="#Caltex" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center group-hover:border-emerald-500 transition-all p-2">
+                        <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-caltex.png" class="w-full h-full rounded-lg" alt="Caltex">
+                    </div>
+                    <span class="text-[10px] sm:text-xs font-bold mt-2 text-slate-600 group-hover:text-emerald-600">คาลเท็กซ์</span>
+                </a>
+                <a href="#PT" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center group-hover:border-emerald-500 transition-all p-2">
+                        <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-pt.png" class="w-full h-full rounded-lg" alt="PT">
+                    </div>
+                    <span class="text-[10px] sm:text-xs font-bold mt-2 text-slate-600 group-hover:text-emerald-600">พีที</span>
+                </a>
+                <a href="#Susco" class="flex flex-col items-center group">
+                    <div class="w-14 h-14 sm:w-16 sm:h-16 bg-white rounded-2xl border border-slate-200 shadow-sm flex items-center justify-center group-hover:border-emerald-500 transition-all p-2">
+                        <img src="https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-susco.png" class="w-full h-full rounded-lg" alt="Susco">
+                    </div>
+                    <span class="text-[10px] sm:text-xs font-bold mt-2 text-slate-600 group-hover:text-emerald-600">ซัสโก้</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Brand Sections -->
+            <div class="lg:col-span-2 space-y-10" id="brand-container">
+                <!-- Brand sections will be injected here -->
+            </div>
+
+            <!-- Right Column: Sidebar Info -->
+            <div class="space-y-8">
+                <!-- Market Analysis Section -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+                    <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                        วิเคราะห์ตลาด
+                    </h2>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Brent Crude</p>
+                            <p class="text-xl font-bold text-slate-800">$84.12 <span class="text-xs text-emerald-500 font-medium">(+1.24%)</span></p>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-100">
+                            <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">WTI Crude</p>
+                            <p class="text-xl font-bold text-slate-800">$79.85 <span class="text-xs text-emerald-500 font-medium">(+0.98%)</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Section -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+                    <h2 class="text-lg font-bold mb-4">คำถามที่พบบ่อย</h2>
+                    <div class="space-y-4 text-sm">
+                        <details class="group">
+                            <summary class="font-bold cursor-pointer list-none flex justify-between items-center text-slate-700">
+                                ทำไมราคาน้ำมันแต่ละปั๊มไม่เท่ากัน?
+                                <span class="group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="mt-2 text-slate-500 leading-relaxed">เนื่องจากต้นทุนการขนส่งและค่าการตลาดของแต่ละแบรนด์มีความแตกต่างกัน รวมถึงโปรโมชั่นของแต่ละสถานี</p>
+                        </details>
+                        <details class="group">
+                            <summary class="font-bold cursor-pointer list-none flex justify-between items-center text-slate-700">
+                                ราคาน้ำมันพรุ่งนี้จะขึ้นหรือลง?
+                                <span class="group-open:rotate-180 transition-transform">▼</span>
+                            </summary>
+                            <p class="mt-2 text-slate-500 leading-relaxed">โดยปกติจะมีการประกาศล่วงหน้าในช่วงเวลา 17.00 น. ของทุกวัน ท่านสามารถติดตามได้ที่หน้าเว็บนี้</p>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Fuel Saving Tips -->
+                <div class="bg-emerald-900 text-white rounded-2xl p-6 shadow-xl shadow-emerald-100">
+                    <h2 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                        เคล็ดลับประหยัดน้ำมัน
+                    </h2>
+                    <ul class="space-y-4 text-sm text-emerald-50/80">
+                        <li class="flex gap-3">
+                            <span class="bg-emerald-800/50 w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] font-bold">1</span>
+                            เช็คลมยางสม่ำเสมอ ลดแรงเสียดทาน
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="bg-emerald-800/50 w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] font-bold">2</span>
+                            ไม่ขับกระชาก ออกตัวนุ่มนวลประหยัด 15%
+                        </li>
+                        <li class="flex gap-3">
+                            <span class="bg-emerald-800/50 w-6 h-6 rounded-full flex items-center justify-center shrink-0 text-[10px] font-bold">3</span>
+                            วางแผนเส้นทาง เลี่ยงรถติด
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Energy News Feed -->
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6">
+                    <h2 class="text-lg font-bold mb-4">ข่าวสารพลังงาน</h2>
+                    <div class="space-y-6">
+                        <div class="group cursor-pointer">
+                            <p class="text-[10px] font-bold text-emerald-600 uppercase mb-1">Policy</p>
+                            <h3 class="text-sm font-bold group-hover:text-emerald-600 transition-colors">กงพ. เคาะตรึงราคาดีเซล 30 บาทต่อถึงมิถุนายนนี้</h3>
+                            <p class="text-xs text-slate-400 mt-1">1 ชม. ที่แล้ว</p>
+                        </div>
+                        <div class="group cursor-pointer">
+                            <p class="text-[10px] font-bold text-emerald-600 uppercase mb-1">Market</p>
+                            <h3 class="text-sm font-bold group-hover:text-emerald-600 transition-colors">ราคาน้ำมันดิบเบรนท์พุ่งสูงสุดในรอบ 4 เดือน</h3>
+                            <p class="text-xs text-slate-400 mt-1">3 ชม. ที่แล้ว</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- System Status (Decoy) -->
+                <div class="p-4 border border-slate-200 rounded-2xl bg-slate-50">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Server Status</span>
+                        <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Data Sync</span>
+                        <span class="text-[10px] font-mono text-emerald-600 font-bold">ACTIVE</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-16 pt-8 border-t border-slate-200 text-center text-slate-400 text-sm">
+            <p class="mb-2 font-bold">ขอบคุณข้อมูลราคาน้ำมันจาก</p>
+            <p>สำนักงานนโยบายและพลังงาน กระทรวงพลังงาน (EPPO)</p>
+            <p class="mt-6">
+                <a href="/login" class="opacity-0 cursor-default">.</a>
+                <span class="opacity-50">© 2026 FuelCheck Thailand. All rights reserved.</span>
+                <a href="/login" class="text-slate-400/10 hover:text-emerald-600/20 transition-colors">●</a>
+            </p>
+            <a href="#top" class="inline-block mt-6 text-emerald-600 font-bold hover:underline">กลับด้านบน</a>
+        </div>
     </main>
 
     <script>
-        document.getElementById('update-date').innerText = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+        document.getElementById('update-date').innerText = new Date().toLocaleDateString('th-TH', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        const brandLogos = {
+            'PTT': 'https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมันปตท.png',
+            'Shell': 'https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-shell.png',
+            'Bangchak': 'https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมันบางจาก.png',
+            'PT': 'https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-pt.png',
+            'Caltex': 'https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-caltex.png',
+            'Susco': 'https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-susco.png',
+            'IRPC': 'https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-irpc.png',
+            'Pure': 'https://xn--42cah7d0cxcvbbb9x.com/wp-content/uploads/2018/06/น้ำมัน-pure.png'
+        };
+
+        const brandNames = {
+            'PTT': 'ราคานํ้ามัน ปตท. (ptt)',
+            'Shell': 'ราคานํ้ามันเชลล์ (shell)',
+            'Bangchak': 'ราคานํ้ามันบางจาก (bcp)',
+            'PT': 'ราคานํ้ามันพีที (pt)',
+            'Caltex': 'ราคานํ้ามันคาลเท็กซ์ (caltex)',
+            'Susco': 'ราคานํ้ามันซัสโก้ (susco)'
+        };
+
+        const fuelTypes = [
+            'แก๊สโซฮอล์ 95',
+            'แก๊สโซฮอล์ 91',
+            'แก๊สโซฮอล์ E20',
+            'แก๊สโซฮอล์ E85',
+            'แก๊สโซฮอล์ 95 พรีเมี่ยม',
+            'เบนซิน 95',
+            'ดีเซล',
+            'ดีเซลพรีเมี่ยม',
+            'แก๊ส NGV'
+        ];
+
+        const brands = ['PTT', 'Bangchak', 'Shell', 'Caltex', 'IRPC', 'PT', 'Susco', 'Pure'];
 
         fetch('/oil/api/prices')
             .then(res => res.json())
             .then(data => {
-                const table = document.getElementById('price-table');
-                data.forEach(item => {
-                    const row = `
-                        <tr class="hover:bg-slate-50 transition-colors">
-                            <td class="px-4 sm:px-6 py-3 sm:py-4 font-bold text-slate-700">${item.brand}</td>
-                            <td class="px-4 sm:px-6 py-3 sm:py-4 text-slate-600">${item.fuel_type}</td>
-                            <td class="px-4 sm:px-6 py-3 sm:py-4 font-mono font-bold text-emerald-600">${item.price.toFixed(2)}</td>
-                            <td class="px-4 sm:px-6 py-3 sm:py-4 hidden sm:table-cell">
-                                <span class="px-2 py-1 bg-emerald-50 text-emerald-600 text-[10px] font-bold rounded-full uppercase">Stable</span>
-                            </td>
-                        </tr>
+                // Populate Comparison Table
+                const compBody = document.getElementById('comparison-body');
+                fuelTypes.forEach(type => {
+                    let row = `<tr class="hover:bg-slate-50/50 transition-colors">
+                        <td class="px-4 py-4 text-left font-bold text-slate-700 bg-white sticky left-0 z-10 border-r border-slate-100">${type}</td>`;
+                    
+                    brands.forEach(brand => {
+                        const item = data.find(d => d.brand === brand && d.fuel_type === type);
+                        const price = item ? item.price.toFixed(2) : '-';
+                        const colorClass = item ? 'text-emerald-600 font-bold' : 'text-slate-300';
+                        row += `<td class="px-2 py-4 font-mono ${colorClass}">${price}</td>`;
+                    });
+                    
+                    row += `</tr>`;
+                    compBody.innerHTML += row;
+                });
+
+                // Populate Detailed Sections
+                const container = document.getElementById('brand-container');
+                const grouped = data.reduce((acc, item) => {
+                    if (!acc[item.brand]) acc[item.brand] = [];
+                    acc[item.brand].push(item);
+                    return acc;
+                }, {});
+
+                Object.keys(grouped).forEach(brand => {
+                    const logoUrl = brandLogos[brand] || `https://api.dicebear.com/7.x/initials/svg?seed=${brand}`;
+                    const brandName = brandNames[brand] || `ราคาน้ำมัน ${brand}`;
+                    
+                    const section = `
+                        <article id="${brand}" class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden scroll-mt-20">
+                            <header class="bg-slate-50 px-6 py-4 border-b border-slate-100 flex items-center gap-4">
+                                <img src="${logoUrl}" class="w-8 h-8 rounded-lg shadow-sm" alt="${brand}" referrerPolicy="no-referrer">
+                                <h3 class="font-bold text-slate-800">${brandName}</h3>
+                            </header>
+                            <ul class="divide-y divide-slate-50">
+                                ${grouped[brand].map(item => `
+                                    <li class="px-6 py-4 flex justify-between items-center hover:bg-slate-50/50 transition-colors">
+                                        <span class="text-slate-600 font-medium">${item.fuel_type}</span>
+                                        <em class="not-italic font-mono font-bold text-emerald-600 text-lg">${item.price.toFixed(2)}</em>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                            <footer class="px-6 py-3 bg-slate-50/50 border-t border-slate-50 flex justify-end">
+                                <a href="#top" class="text-slate-300 hover:text-emerald-600">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                    </svg>
+                                </a>
+                            </footer>
+                        </article>
                     `;
-                    table.innerHTML += row;
+                    container.innerHTML += section;
                 });
             });
     </script>

@@ -31,8 +31,8 @@ router.post('/login', (req, res) => {
     });
   }
 
-  // Decoy: If login fails, redirect to /oil without error message
-  res.redirect('/oil');
+  // Decoy: If login fails, redirect to a scary fake error page
+  res.redirect('/error');
 });
 
 router.get('/logout', (req, res) => {
