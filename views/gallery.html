@@ -46,19 +46,19 @@
     <!-- Upload Modal -->
     <div id="upload-modal" class="hidden fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-[60] flex items-center justify-center p-4">
         <div class="bg-white rounded-2xl p-8 w-full max-w-md shadow-2xl">
-            <h2 class="text-xl font-bold mb-6">Upload Image</h2>
+            <h2 class="text-xl font-bold mb-6">Upload Images</h2>
             <form action="/gallery/upload" method="POST" enctype="multipart/form-data" class="space-y-6">
                 <div class="border-2 border-dashed border-slate-200 rounded-xl p-8 text-center hover:border-emerald-500 transition-colors cursor-pointer" onclick="document.getElementById('file-input').click()">
-                    <input type="file" id="file-input" name="image" class="hidden" accept="image/*" required>
+                    <input type="file" id="file-input" name="images" class="hidden" accept="image/*" multiple onchange="updateFileCount(this)" required>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-slate-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                     </svg>
-                    <p class="text-sm text-slate-500 font-medium">Click to select or drag and drop</p>
-                    <p class="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">JPG, PNG, GIF (Max 5MB)</p>
+                    <p id="file-text" class="text-sm text-slate-500 font-medium">Click to select or drag and drop</p>
+                    <p class="text-[10px] text-slate-400 mt-1 uppercase font-bold tracking-widest">JPG, PNG, GIF (Max 10 files, 5MB each)</p>
                 </div>
                 <div class="flex gap-4">
-                    <button type="button" onclick="document.getElementById('upload-modal').classList.add('hidden')" class="flex-1 py-3 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-colors">Cancel</button>
-                    <button type="submit" class="flex-1 py-3 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200">Upload</button>
+                    <button type="button" onclick="closeModal()" class="flex-1 py-3 rounded-xl border border-slate-200 text-slate-600 font-bold hover:bg-slate-50 transition-colors">Cancel</button>
+                    <button type="submit" class="flex-1 py-3 rounded-xl bg-emerald-600 text-white font-bold hover:bg-emerald-700 transition-colors shadow-lg shadow-emerald-200">Upload All</button>
                 </div>
             </form>
         </div>
@@ -70,6 +70,24 @@
     </div>
 
     <script>
+        function updateFileCount(input) {
+            const text = document.getElementById('file-text');
+            if (input.files.length > 0) {
+                text.innerText = `Selected ${input.files.length} file(s)`;
+                text.classList.add('text-emerald-600');
+            } else {
+                text.innerText = 'Click to select or drag and drop';
+                text.classList.remove('text-emerald-600');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('upload-modal').classList.add('hidden');
+            document.getElementById('file-input').value = '';
+            document.getElementById('file-text').innerText = 'Click to select or drag and drop';
+            document.getElementById('file-text').classList.remove('text-emerald-600');
+        }
+
         function loadImages() {
             fetch('/gallery/api/images')
                 .then(res => res.json())
